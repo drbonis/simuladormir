@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.coolappz.HTML5Application" version="1.0.0">
-    <name>HTML5Application</name>
-    <description>Cordova Application</description>
-    <author email="info@com.coolappz" href="http://www.coolappz.com">drbonis</author>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.twempa.simulamir" version="1.0.0">
+    <name>Simulador MIR</name>
+    <description>Simulador de exámenes MIR</description>
+    <author email="drbonis@gmail.com" href="http://www.twempa.com/">drbonis</author>
     <access origin="*"/>
     <preference name="fullscreen" value="true"/>
     <preference name="webviewbounce" value="true"/>
