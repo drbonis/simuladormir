@@ -19,6 +19,7 @@
 var app = {
     // Application Constructor
     initialize: function() {
+        console.log('initialize app');
         this.bindEvents();
     },
     // Bind Event Listeners
@@ -43,37 +44,41 @@ var app = {
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
-        self.location = 'prin.html';
+        if(id == 'deviceready') {
+            self.location = 'prin.html';
+            pgprin.initialize();
+        }
+        
 
     }
 };
 
-var prin = (function () {
-    $('#prin').on('pagebeforeshow', function(event){
-        $('#exam_submit').click(function(event){
-            event.preventDefault();  
-            //alert($('#numpreg').val());
-            $.mobile.changePage("exam.html",{
-                                        allowSamePageTransition : false,
-                                        transition              : 'slide',
-                                        showLoadMsg             : true,
-                                        reloadPage              : true,
-                                        changeHash              : false,
-                                        crossDomain             : true,
-                                        data                    : $('#numpreg').val(),
-                                        type                    : "post"
-                                        });
+var pgprin = {
+     initialize: function () {
+        console.log("prin initialize");
+        console.log($('#pgprin'));
+        $('#pgprin').on('pagebeforeshow', function(event){
+            console.log('pagebofeshow prin');
+            $('#exam_submit').click(function(event){
+                event.preventDefault();  
+                //alert($('#numpreg').val());
+                $.mobile.changePage("exam.html",{
+                                            allowSamePageTransition : false,
+                                            transition              : 'slide',
+                                            showLoadMsg             : true,
+                                            reloadPage              : true,
+                                            changeHash              : false,
+                                            crossDomain             : true,
+                                            data                    : $('#numpreg').val(),
+                                            type                    : "post"
+                                            });
+            });
         });
-    });
+        }
+};
     
     
-})(this);
 
-var pg_exam = (function(){
-    $('#exam').on('pagebeforeshow', function(event){
-        alert("hola mundo");
-    });
-})(this);
 
 var exam2 = {
     getQuestions: function (n) {
