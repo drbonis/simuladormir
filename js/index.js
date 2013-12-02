@@ -26,7 +26,6 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        console.log(app);
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
     // deviceready Event Handler
@@ -39,13 +38,64 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
-        console.log(parentElement);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
+        self.location = 'prin.html';
 
-        console.log('Received Event: ' + id);
     }
+};
+
+var prin = (function () {
+    $('#prin').on('pagebeforeshow', function(event){
+        $('#exam_submit').click(function(event){
+            event.preventDefault();  
+            //alert($('#numpreg').val());
+            $.mobile.changePage("exam.html",{
+                                        allowSamePageTransition : false,
+                                        transition              : 'slide',
+                                        showLoadMsg             : true,
+                                        reloadPage              : true,
+                                        changeHash              : false,
+                                        crossDomain             : true,
+                                        data                    : $('#numpreg').val(),
+                                        type                    : "post"
+                                        });
+        });
+    });
+    
+    
+})(this);
+
+var pg_exam = (function(){
+    $('#exam').on('pagebeforeshow', function(event){
+        alert("hola mundo");
+    });
+})(this);
+
+var exam2 = {
+    getQuestions: function (n) {
+        var interval = setInterval(function(){
+            $.mobile.loading( 'show', {text: "Recuperando mensajes", textVisible: true, theme: "e"});
+            clearInterval(interval);
+        },1); 
+
+        var deferred = $.Deferred();
+
+        $.ajax({
+            url: api_url+"?f=getQuestions&num="+n+"&jsoncallback=?", type: "GET", dataType: 'jsonp',
+            success: function(response) {  
+                $.mobile.loading( 'hide');
+                //alert(JSON.stringify(response));            
+                return deferred.resolve(response);
+            },
+            error: function(request, status, error) {
+                $.mobile.loading( 'hide');
+                return deferred.resolve({'success':false, 'error': error, 'request': request, 'status':status });
+            }
+        }); 
+        return deferred.promise();
+    }  
 };
