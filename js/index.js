@@ -129,64 +129,73 @@ var pgexam = {
     npreg: 20,
     questions: '',
     initialize: function() {
-        console.log(this);
-        console.log("pgexam initialize"); 
-        console.log(pgexam);
+        var i = 0;
+        pgexam.initialize_options(i);
         $("#enunciado").html(this['questions'][0]['enun']);
         $("#op1").html(this['questions'][0]['op1']);
         $("#op2").html(this['questions'][0]['op2']);
         $("#op3").html(this['questions'][0]['op3']);
         $("#op4").html(this['questions'][0]['op4']);
         $("#op5").html(this['questions'][0]['op5']);
-        var i = 0;
+
+                
+
+        
+        $("#next_question").on('click',function(event){
+            event.preventDefault();
+            pgexam.reset_responses();
+            i++;
+            $("#enunciado").html(pgexam['questions'][i]['enun']);
+            $("#op1").html(pgexam['questions'][i]['op1']);
+            $("#op2").html(pgexam['questions'][i]['op2']);
+            $("#op3").html(pgexam['questions'][i]['op3']);
+            $("#op4").html(pgexam['questions'][i]['op4']);
+            $("#op5").html(pgexam['questions'][i]['op5']);
+            pgexam.initialize_options(i);
+        });
+        
+
+    },
+    
+    initialize_options: function(i){
+        console.log('initialize_options');
         $('#respul .resp').on('click',function(d){
+            pgexam.reset_responses();
+            $('#respul .resp').unbind('click');
             if(i<pgexam['questions'].length-1) {
+                original_classes = $(this).attr('class');
                 respuesta = parseInt(String($(this).attr('id')).substr(2,1));
                 if(respuesta == pgexam['questions'][i]['resp']){
+                    $(this).attr('class',original_classes+" correcto");
                     console.log("correcto");
                 } else {
+                    $('#op'+String(pgexam['questions'][i]['resp'])).attr('class',$('#op'+String(pgexam['questions'][i]['resp'])).attr('class')+" correcto");
+                    $(this).attr('class',original_classes+" incorrecto");
                     console.log("Incorrecto!");
                 }
-                i++;
-                $("#enunciado").html(pgexam['questions'][i]['enun']);
-                $("#op1").html(pgexam['questions'][i]['op1']);
-                $("#op2").html(pgexam['questions'][i]['op2']);
-                $("#op3").html(pgexam['questions'][i]['op3']);
-                $("#op4").html(pgexam['questions'][i]['op4']);
-                $("#op5").html(pgexam['questions'][i]['op5']);
             } else {
+                $("#next_question").attr('style','display:none');
                 respuesta = parseInt(String($(this).attr('id')).substr(2,1));
-                if(respuesta == pgexam['questions'][i]['resp']){
+                if(respuesta === pgexam['questions'][i]['resp']){
+                    $(this).attr('class',original_classes+" correcto");
                     console.log("correcto");
                 } else {
+                    $('#op'+String(pgexam['questions'][i]['resp'])).attr('class',$('#op'+String(pgexam['questions'][i]['resp'])).attr('class')+" correcto");
+                    $(this).attr('class',original_classes+" incorrecto");
                     console.log("Incorrecto!");
                 }
             }
             
-        });
-        
+        });   
     },
     
-    getQuestions: function() {
-        var interval = setInterval(function() {
-            $.mobile.loading('show', {text: "Cargando preguntas", textVisible: true, theme: "e"});
-            clearInterval(interval);
-        },1);   
-        
-        var deferred = $.Deferred();
-        
-        $.ajax({
-            url: './res/questiontest.json', 
-            success: function(response){
-                $.mobile.loading('hide');
-                return deferred.resolve({'success': true, 'questions': response});
-            },
-            error: function(request, status, error) {
-                $.mobile.loading('hide');
-                return deferred.resolve({'success':false, 'error': error, 'request': request, 'status':status});
-            }
-        });
-        return deferred.promise();
+    
+    reset_responses: function() {
+        $('#op1').removeClass('incorrecto correcto');
+        $('#op2').removeClass('incorrecto correcto');
+        $('#op3').removeClass('incorrecto correcto');
+        $('#op4').removeClass('incorrecto correcto');
+        $('#op5').removeClass('incorrecto correcto');
     }
 }    
 

@@ -117,3 +117,13 @@ h1 {
 .headertitle {
     text-align: center;
 }
+
+.incorrecto {
+    background-color: red;
+    color: white;
+}
+
+.correcto {
+    background-color: green;
+    color: white;
+}
