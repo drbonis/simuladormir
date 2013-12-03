@@ -18,7 +18,6 @@
  */
 
 
-
 var app = {
     // Application Constructor
     initialize: function() {
@@ -109,7 +108,7 @@ var pgprin = {
         var deferred = $.Deferred();
         
         $.ajax({
-            url: './res/questiontest.json', 
+            url: env.hosturi+'.env/questiontest.json', 
             success: function(response){
                 return deferred.resolve({'success': true, 'questions': response});
             },
