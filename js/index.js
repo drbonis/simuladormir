@@ -16,11 +16,15 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
+
 var app = {
     // Application Constructor
     initialize: function() {
         console.log('initialize app');
         this.bindEvents();
+        
     },
     // Bind Event Listeners
     //
@@ -44,9 +48,17 @@ var app = {
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
-        if(id == 'deviceready') {
-            self.location = 'prin.html';
-            pgprin.initialize();
+        
+        if(id === 'deviceready') {
+            
+            $('#deviceready').on('click', function(){
+                $.mobile.changePage("prin.html",{
+                    transition              : 'slide',
+                    showLoadMsg             : true
+                });
+            });
+            
+
         }
         
 
@@ -54,32 +66,131 @@ var app = {
 };
 
 var pgprin = {
-     initialize: function () {
-        console.log("prin initialize");
-        console.log($('#pgprin'));
+    initialize: function () {
+        console.log("pgprin.initialize()");
         $('#pgprin').on('pagebeforeshow', function(event){
-            console.log('pagebofeshow prin');
+            console.log('pagebeforeshow prin');
             $('#exam_submit').click(function(event){
-                event.preventDefault();  
-                //alert($('#numpreg').val());
-                $.mobile.changePage("exam.html",{
-                                            allowSamePageTransition : false,
-                                            transition              : 'slide',
-                                            showLoadMsg             : true,
-                                            reloadPage              : true,
-                                            changeHash              : false,
-                                            crossDomain             : true,
-                                            data                    : $('#numpreg').val(),
-                                            type                    : "post"
-                                            });
+                event.preventDefault();
+                pgexam.npreg = parseInt($('#numpreg').val());
+                $.when(pgprin.getQuestions(pgexam.npgreg)).done(function(q){
+                    if(q['success']) {
+                        pgexam.questions = q['questions'];
+                        $.mobile.changePage("exam.html",{
+                                allowSamePageTransition : false,
+                                transition              : 'slide',
+                                showLoadMsg             : true,
+                                reloadPage              : true,
+                                changeHash              : false,
+                                crossDomain             : true,
+                                data                    : $('#numpreg').val(),
+                                type                    : "post"
+                        });
+                    } else {
+                        console.log('Error al recuperar preguntas');
+                    }
+                });
+
+
             });
         });
-        }
+        
+        $('#pgprin').on('pageshow', function(event){
+            console.log('pageshow pgprin');
+        });
+        },
+        
+    getQuestions: function(n) {
+        var interval = setInterval(function() {
+            $.mobile.loading('show', {text: "Cargando preguntas", textVisible: true, theme: "e"});
+            clearInterval(interval);
+        },1);   
+        
+        var deferred = $.Deferred();
+        
+        $.ajax({
+            url: './res/questiontest.json', 
+            success: function(response){
+                return deferred.resolve({'success': true, 'questions': response});
+            },
+            error: function(request, status, error) {
+                return deferred.resolve({'success':false, 'error': error, 'request': request, 'status':status});
+            }
+        });
+        return deferred.promise();
+    }
+      
 };
-    
-    
 
 
+
+
+var pgexam = {
+    npreg: 20,
+    questions: '',
+    initialize: function() {
+        console.log(this);
+        console.log("pgexam initialize"); 
+        console.log(pgexam);
+        $("#enunciado").html(this['questions'][0]['enun']);
+        $("#op1").html(this['questions'][0]['op1']);
+        $("#op2").html(this['questions'][0]['op2']);
+        $("#op3").html(this['questions'][0]['op3']);
+        $("#op4").html(this['questions'][0]['op4']);
+        $("#op5").html(this['questions'][0]['op5']);
+        var i = 0;
+        $('#respul .resp').on('click',function(d){
+            if(i<pgexam['questions'].length-1) {
+                respuesta = parseInt(String($(this).attr('id')).substr(2,1));
+                if(respuesta == pgexam['questions'][i]['resp']){
+                    console.log("correcto");
+                } else {
+                    console.log("Incorrecto!");
+                }
+                i++;
+                $("#enunciado").html(pgexam['questions'][i]['enun']);
+                $("#op1").html(pgexam['questions'][i]['op1']);
+                $("#op2").html(pgexam['questions'][i]['op2']);
+                $("#op3").html(pgexam['questions'][i]['op3']);
+                $("#op4").html(pgexam['questions'][i]['op4']);
+                $("#op5").html(pgexam['questions'][i]['op5']);
+            } else {
+                respuesta = parseInt(String($(this).attr('id')).substr(2,1));
+                if(respuesta == pgexam['questions'][i]['resp']){
+                    console.log("correcto");
+                } else {
+                    console.log("Incorrecto!");
+                }
+            }
+            
+        });
+        
+    },
+    
+    getQuestions: function() {
+        var interval = setInterval(function() {
+            $.mobile.loading('show', {text: "Cargando preguntas", textVisible: true, theme: "e"});
+            clearInterval(interval);
+        },1);   
+        
+        var deferred = $.Deferred();
+        
+        $.ajax({
+            url: './res/questiontest.json', 
+            success: function(response){
+                $.mobile.loading('hide');
+                return deferred.resolve({'success': true, 'questions': response});
+            },
+            error: function(request, status, error) {
+                $.mobile.loading('hide');
+                return deferred.resolve({'success':false, 'error': error, 'request': request, 'status':status});
+            }
+        });
+        return deferred.promise();
+    }
+}    
+
+/*
 var exam2 = {
     getQuestions: function (n) {
         var interval = setInterval(function(){
@@ -104,3 +215,4 @@ var exam2 = {
         return deferred.promise();
     }  
 };
+*/

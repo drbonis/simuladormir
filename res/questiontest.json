@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "enun":"Niño de 7 meses traído a Urgencias por presentar episodios intermitentes de llanto de aparición brusca con encogimiento de piernas, irritabilidad, sudoración y palidez. En las últimas horas ha comenzado con rechazo del biberón y deposiciones con sangre encontrándose muy aletargado. La exploración física es difícil debido a su irritabilidad. Introducción del gluten hace una semana. Se le realiza una ecografía de abdomen donde se observa la imagen adjunta. ¿Cuál es su diagnóstico?",
+        "op1":"Gastroenteritis aguda.",
+        "op2":"Apendicitis aguda.",
+        "op3":"Invaginación intestinal.",
+        "op4":"Posible intolerancia alimentaria.",
+        "op5":"Adenitis mesentérica.",
+        "resp":5,
+        "year":2012
+    },
+
+    {
+        "id": 2,
+        "enun":"Niño de 10 años con episodios breves de distracciones (< 1 minuto) en los que no responde a llamadas y parpadea. Un EEG muestra descargas punta-onda a 3 ciclos por segundo. El tratamiento electivo de primera línea lo haría con:",
+        "op1":"Valproato.",
+        "op2":"Carbamacepina.",
+        "op3":"Fenitoína.",
+        "op4":"Adenitis mesentérica.",
+        "op5":"Clonazepam.",
+        "resp":3,
+        "year":2012
+    },
+    
+        {
+        "id": 6,
+        "enun":"Niño de 18 meses de edad, con calendario vacunal completo hasta la fecha, que consulta en el Servicio de urgencias por tumefacción de la rodilla derecha tras jugar en el parque, sin traumatismo evidente. En la anamnesis dirigida, la madre refiere que un tío de ella tenía problemas similares. La exploración ecográfica es compatible con hemartros y en la analítica que se realiza sólo destaca un alargamiento del APTT de 52’’ (normal 25-35’’). ¿Cuál es la hipótesis diagnóstica más probable?",
+        "op1":"Síndrome de Marfan",
+        "op2":"Enfermedad de Von-Willebrand",
+        "op3":"Enfermedad de Ehlers-Danlos",
+        "op4":"Hemofilia A",
+        "op5":"Enfermedad de Bernard-Soulier",
+        "resp":4,
+        "year":2012
+    }
+]
+
