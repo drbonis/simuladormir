@@ -72,6 +72,7 @@ var pgprin = {
             $('#exam_submit').click(function(event){
                 event.preventDefault();
                 pgexam.npreg = parseInt($('#numpreg').val());
+                alert(env.hosturi+'.env/questiontest.json');
                 $.when(pgprin.getQuestions(pgexam.npgreg)).done(function(q){
                     if(q['success']) {
                         pgexam.questions = q['questions'];
@@ -110,12 +111,18 @@ var pgprin = {
         $.ajax({
             url: env.hosturi+'.env/questiontest.json', 
             success: function(response){
+                console.log("exito ajax");
                 return deferred.resolve({'success': true, 'questions': response});
             },
             error: function(request, status, error) {
+                console.log("fracaso ajax");
+                console.log(request);
+                console.log(status);
+                console.log(error);
                 return deferred.resolve({'success':false, 'error': error, 'request': request, 'status':status});
             }
         });
+        console.log(env.hosturi);
         return deferred.promise();
     }
       
