@@ -119,11 +119,12 @@ h1 {
 }
 
 .incorrecto {
-    background-color: red;
-    color: white;
+    background-color: #FF8080;
+    color: black;
+    
 }
 
 .correcto {
-    background-color: green;
-    color: white;
+    background-color: #D6FFD6;
+    color: black;
 }

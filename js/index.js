@@ -72,7 +72,6 @@ var pgprin = {
             $('#exam_submit').click(function(event){
                 event.preventDefault();
                 pgexam.npreg = parseInt($('#numpreg').val());
-                alert(env.hosturi+'.env/questiontest.json');
                 $.when(pgprin.getQuestions(pgexam.npgreg)).done(function(q){
                     if(q['success']) {
                         pgexam.questions = q['questions'];
@@ -135,28 +134,15 @@ var pgexam = {
     npreg: 20,
     questions: '',
     initialize: function() {
+        $("#detalles").hide();
         var i = 0;
         pgexam.initialize_options(i);
-        $("#enunciado").html(this['questions'][0]['enun']);
-        $("#op1").html(this['questions'][0]['op1']);
-        $("#op2").html(this['questions'][0]['op2']);
-        $("#op3").html(this['questions'][0]['op3']);
-        $("#op4").html(this['questions'][0]['op4']);
-        $("#op5").html(this['questions'][0]['op5']);
-
-                
-
-        
+ 
         $("#next_question").on('click',function(event){
             event.preventDefault();
-            pgexam.reset_responses();
+            $('#respul .resp').removeClass('incorrecto correcto');  
+            $("#detalles").hide();
             i++;
-            $("#enunciado").html(pgexam['questions'][i]['enun']);
-            $("#op1").html(pgexam['questions'][i]['op1']);
-            $("#op2").html(pgexam['questions'][i]['op2']);
-            $("#op3").html(pgexam['questions'][i]['op3']);
-            $("#op4").html(pgexam['questions'][i]['op4']);
-            $("#op5").html(pgexam['questions'][i]['op5']);
             pgexam.initialize_options(i);
         });
         
@@ -164,44 +150,41 @@ var pgexam = {
     },
     
     initialize_options: function(i){
+        
         console.log('initialize_options');
+        
+        $("#enunciado").html(pgexam['questions'][i]['enun']);
+        $("#op1").html(pgexam['questions'][i]['options'][0]);
+        $("#op2").html(pgexam['questions'][i]['options'][1]);
+        $("#op3").html(pgexam['questions'][i]['options'][2]);
+        $("#op4").html(pgexam['questions'][i]['options'][3]);
+        $("#op5").html(pgexam['questions'][i]['options'][4]);
+        
+        
         $('#respul .resp').on('click',function(d){
-            pgexam.reset_responses();
-            $('#respul .resp').unbind('click');
-            if(i<pgexam['questions'].length-1) {
-                original_classes = $(this).attr('class');
-                respuesta = parseInt(String($(this).attr('id')).substr(2,1));
-                if(respuesta == pgexam['questions'][i]['resp']){
-                    $(this).attr('class',original_classes+" correcto");
-                    console.log("correcto");
-                } else {
-                    $('#op'+String(pgexam['questions'][i]['resp'])).attr('class',$('#op'+String(pgexam['questions'][i]['resp'])).attr('class')+" correcto");
-                    $(this).attr('class',original_classes+" incorrecto");
-                    console.log("Incorrecto!");
-                }
-            } else {
-                $("#next_question").attr('style','display:none');
-                respuesta = parseInt(String($(this).attr('id')).substr(2,1));
-                if(respuesta === pgexam['questions'][i]['resp']){
-                    $(this).attr('class',original_classes+" correcto");
-                    console.log("correcto");
-                } else {
-                    $('#op'+String(pgexam['questions'][i]['resp'])).attr('class',$('#op'+String(pgexam['questions'][i]['resp'])).attr('class')+" correcto");
-                    $(this).attr('class',original_classes+" incorrecto");
-                    console.log("Incorrecto!");
-                }
-            }
+            $('#respul .resp').removeClass('incorrecto correcto');    
+            if(i>=pgexam['questions'].length-1) {
+                $("#next_question").hide();
+            } 
+            $("#detalles").show();
             
+            $('#respul .resp').unbind('click');
+            console.log(pgexam['questions'].length-1, i);
+            respuesta = parseInt(String($(this).attr('id')).substr(2,1));
+            if(respuesta == pgexam['questions'][i]['resp']){
+                $(this).addClass('correcto');
+                console.log("correcto");
+            } else {
+                $('#op'+String(pgexam['questions'][i]['resp'])).addClass('correcto');
+                $(this).addClass('incorrecto');
+                console.log("Incorrecto!");
+            }
+            $('#op1').html(pgexam['questions'][i]['responses'][0]+'%: '+$('#op1').html());
+            $('#op2').html(pgexam['questions'][i]['responses'][1]+'% : '+$('#op2').html());
+            $('#op3').html(pgexam['questions'][i]['responses'][2]+'% : '+$('#op3').html());
+            $('#op4').html(pgexam['questions'][i]['responses'][3]+'% : '+$('#op4').html());
+            $('#op5').html(pgexam['questions'][i]['responses'][4]+'% : '+$('#op5').html());
         });   
-    },
-    
-    
-    reset_responses: function() {
-        $('#op1').removeClass('incorrecto correcto');
-        $('#op2').removeClass('incorrecto correcto');
-        $('#op3').removeClass('incorrecto correcto');
-        $('#op4').removeClass('incorrecto correcto');
-        $('#op5').removeClass('incorrecto correcto');
     }
 }    
 
