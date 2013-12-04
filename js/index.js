@@ -17,6 +17,7 @@
  * under the License.
  */
 
+$.ajaxSetup({ cache:false });
 
 var app = {
     // Application Constructor
@@ -169,7 +170,7 @@ var pgexam = {
     initialize_options: function(i){
         
         console.log('initialize_options');
-        
+        console.log(pgexam['questions']);
         $("#enunciado").html(pgexam['questions'][pgexam.i]['enun']);
         $("#op1").html(pgexam['questions'][pgexam.i]['options'][0]);
         $("#op2").html(pgexam['questions'][pgexam.i]['options'][1]);

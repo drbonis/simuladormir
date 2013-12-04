@@ -5,6 +5,6 @@
  */
 
 var env = {
-    //hosturi: "http://www.doctorality.com/simulamir/"
-    hosturi: "http://localhost/simulaMIR/www/"
+    hosturi: "http://www.doctorality.com/simulamir/"
+    //hosturi: "http://localhost/simulaMIR/www/"
 }
