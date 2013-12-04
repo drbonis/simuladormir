@@ -72,7 +72,7 @@ var pgprin = {
             $('#exam_submit').click(function(event){
                 event.preventDefault();
                 pgexam.npreg = parseInt($('#numpreg').val());
-                $.when(pgprin.getQuestions(pgexam.npgreg)).done(function(q){
+                $.when(pgprin.getQuestions(pgexam.npgreg, true)).done(function(q){
                     if(q['success']) {
                         pgexam.questions = q['questions'];
                         $.mobile.changePage("exam.html",{
@@ -99,12 +99,13 @@ var pgprin = {
         });
         },
         
-    getQuestions: function(n) {
+    getQuestions: function(n,roll) {
+        if(roll) {
         var interval = setInterval(function() {
             $.mobile.loading('show', {text: "Cargando preguntas", textVisible: true, theme: "e"});
             clearInterval(interval);
         },1);   
-        
+        }
         var deferred = $.Deferred();
         
         $.ajax({
@@ -131,19 +132,35 @@ var pgprin = {
 
 
 var pgexam = {
+    i: 0,
     npreg: 20,
-    questions: '',
+    questions: [],
     initialize: function() {
         $("#detalles").hide();
-        var i = 0;
-        pgexam.initialize_options(i);
+        pgexam.i = 0;
+        pgexam.initialize_options(pgexam.i);
  
         $("#next_question").on('click',function(event){
             event.preventDefault();
             $('#respul .resp').removeClass('incorrecto correcto');  
             $("#detalles").hide();
-            i++;
-            pgexam.initialize_options(i);
+            console.log(pgexam);
+            console.log("pgexam");
+            if(pgexam.i % 5 == 0 && pgexam.i > 0) {
+                console.log("lanzo getQuestions en medio");
+                $.when(pgprin.getQuestions(5, false)).done(function(q){
+                    pgexam['questions'].push(q['questions']);
+                    pgexam['questions'].splice(0,5);
+                    console.log("convierto i = 0");
+                    pgexam.i=0;
+                    console.log(pgexam);
+                });
+
+            }
+            
+            
+            pgexam.i++;
+            pgexam.initialize_options(pgexam.i);
         });
         
 
@@ -153,37 +170,38 @@ var pgexam = {
         
         console.log('initialize_options');
         
-        $("#enunciado").html(pgexam['questions'][i]['enun']);
-        $("#op1").html(pgexam['questions'][i]['options'][0]);
-        $("#op2").html(pgexam['questions'][i]['options'][1]);
-        $("#op3").html(pgexam['questions'][i]['options'][2]);
-        $("#op4").html(pgexam['questions'][i]['options'][3]);
-        $("#op5").html(pgexam['questions'][i]['options'][4]);
+        $("#enunciado").html(pgexam['questions'][pgexam.i]['enun']);
+        $("#op1").html(pgexam['questions'][pgexam.i]['options'][0]);
+        $("#op2").html(pgexam['questions'][pgexam.i]['options'][1]);
+        $("#op3").html(pgexam['questions'][pgexam.i]['options'][2]);
+        $("#op4").html(pgexam['questions'][pgexam.i]['options'][3]);
+        $("#op5").html(pgexam['questions'][pgexam.i]['options'][4]);
         
         
         $('#respul .resp').on('click',function(d){
             $('#respul .resp').removeClass('incorrecto correcto');    
-            if(i>=pgexam['questions'].length-1) {
+            if(pgexam.i>=pgexam['questions'].length-1) {
                 $("#next_question").hide();
             } 
             $("#detalles").show();
             
             $('#respul .resp').unbind('click');
-            console.log(pgexam['questions'].length-1, i);
+            console.log(pgexam['questions'].length-1, pgexam.i);
             respuesta = parseInt(String($(this).attr('id')).substr(2,1));
-            if(respuesta == pgexam['questions'][i]['resp']){
+            console.log("i: "+pgexam.i);
+            if(respuesta == pgexam['questions'][pgexam.i]['resp']){
                 $(this).addClass('correcto');
                 console.log("correcto");
             } else {
-                $('#op'+String(pgexam['questions'][i]['resp'])).addClass('correcto');
+                $('#op'+String(pgexam['questions'][pgexam.i]['resp'])).addClass('correcto');
                 $(this).addClass('incorrecto');
                 console.log("Incorrecto!");
             }
-            $('#op1').html(pgexam['questions'][i]['responses'][0]+'%: '+$('#op1').html());
-            $('#op2').html(pgexam['questions'][i]['responses'][1]+'% : '+$('#op2').html());
-            $('#op3').html(pgexam['questions'][i]['responses'][2]+'% : '+$('#op3').html());
-            $('#op4').html(pgexam['questions'][i]['responses'][3]+'% : '+$('#op4').html());
-            $('#op5').html(pgexam['questions'][i]['responses'][4]+'% : '+$('#op5').html());
+            $('#op1').html(pgexam['questions'][pgexam.i]['responses'][0]+'%: '+$('#op1').html());
+            $('#op2').html(pgexam['questions'][pgexam.i]['responses'][1]+'% : '+$('#op2').html());
+            $('#op3').html(pgexam['questions'][pgexam.i]['responses'][2]+'% : '+$('#op3').html());
+            $('#op4').html(pgexam['questions'][pgexam.i]['responses'][3]+'% : '+$('#op4').html());
+            $('#op5').html(pgexam['questions'][pgexam.i]['responses'][4]+'% : '+$('#op5').html());
         });   
     }
 }    

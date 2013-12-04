@@ -128,3 +128,21 @@ h1 {
     background-color: #D6FFD6;
     color: black;
 }
+
+#enunul {
+
+    font-family: helvetica, sans-serif;
+    font-size: 14px;
+    text-transform: none;
+    letter-spacing: 0pt;
+    word-spacing: 0pt;
+
+}
+
+.resp {
+    font-family: helvetica, sans-serif;
+    font-size: 16px;
+    text-transform: none;
+    letter-spacing: 0pt;
+    word-spacing: 0pt;
+}

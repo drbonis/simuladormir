@@ -413,3 +413,15 @@ button[disabled],
 	outline-style: auto;
 }
 			
+
+
+.incorrecto {
+    background-color: #FF8080;
+    color: black;
+    
+}
+
+.correcto {
+    background-color: #D6FFD6;
+    color: black;
+}
