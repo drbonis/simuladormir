@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "enun":"Niño de 7 meses traído a Urgencias por presentar episodios intermitentes de llanto de aparición brusca con encogimiento de piernas, irritabilidad, sudoración y palidez. En las últimas horas ha comenzado con rechazo del biberón y deposiciones con sangre encontrándose muy aletargado. La exploración física es difícil debido a su irritabilidad. Introducción del gluten hace una semana. Se le realiza una ecografía de abdomen donde se observa la imagen adjunta. ¿Cuál es su diagnóstico?",
+        "enun":"1 Niño de 7 meses traído a Urgencias por presentar episodios intermitentes de llanto de aparición brusca con encogimiento de piernas, irritabilidad, sudoración y palidez. En las últimas horas ha comenzado con rechazo del biberón y deposiciones con sangre encontrándose muy aletargado. La exploración física es difícil debido a su irritabilidad. Introducción del gluten hace una semana. Se le realiza una ecografía de abdomen donde se observa la imagen adjunta. ¿Cuál es su diagnóstico?",
         "options":[
             "Gastroenteritis aguda.",
             "Apendicitis aguda.",
@@ -35,7 +35,7 @@
 
     {
         "id": 2,
-        "enun":"Niño de 10 años con episodios breves de distracciones (< 1 minuto) en los que no responde a llamadas y parpadea. Un EEG muestra descargas punta-onda a 3 ciclos por segundo. El tratamiento electivo de primera línea lo haría con:",
+        "enun":"2 Niño de 10 años con episodios breves de distracciones (< 1 minuto) en los que no responde a llamadas y parpadea. Un EEG muestra descargas punta-onda a 3 ciclos por segundo. El tratamiento electivo de primera línea lo haría con:",
         "options":[
             "Valproato",
             "Carbamacepina",
@@ -61,7 +61,7 @@
     
     {
         "id": 3,
-        "enun":"Niño de 18 meses de edad, con calendario vacunal completo hasta la fecha, que consulta en el Servicio de urgencias por tumefacción de la rodilla derecha tras jugar en el parque, sin traumatismo evidente. En la anamnesis dirigida, la madre refiere que un tío de ella tenía problemas similares. La exploración ecográfica es compatible con hemartros y en la analítica que se realiza sólo destaca un alargamiento del APTT de 52’’ (normal 25-35’’). ¿Cuál es la hipótesis diagnóstica más probable?",
+        "enun":"3 Niño de 18 meses de edad, con calendario vacunal completo hasta la fecha, que consulta en el Servicio de urgencias por tumefacción de la rodilla derecha tras jugar en el parque, sin traumatismo evidente. En la anamnesis dirigida, la madre refiere que un tío de ella tenía problemas similares. La exploración ecográfica es compatible con hemartros y en la analítica que se realiza sólo destaca un alargamiento del APTT de 52’’ (normal 25-35’’). ¿Cuál es la hipótesis diagnóstica más probable?",
         "options":[
             "Síndrome de Marfan",
             "Enfermedad de Von-Willebrand",
@@ -90,7 +90,7 @@
     
         {
         "id": 4,
-        "enun":"Lactante de 13 meses que acude a urgencias por fiebre de hasta 39ºC de 48h de evolución sin otra sintomatología asociada. Exploración por órganos y aparatos sin hallazgos significativos, destacando buen estado general. Usted le iba entregar el alta domiciliaria pero el adjunto de Pediatría que está de guardia le pide sistemático de orina y un urocultivo por sondaje. En la orina destaca leucocituria ++, hematuria + y nitritos ++ y en el Gram de orina se observan bacilos Gram negativos. En la analítica de sangre no existe leucocitosis y la proteína C reactiva es de 50 mg/l. El adjunto le dice ahora que no es preciso que el niño ingrese y que le paute un antibiótico oral. Señale el tratamiento antibiótico empírico menos adecuado en este caso:",
+        "enun":"4 Lactante de 13 meses que acude a urgencias por fiebre de hasta 39ºC de 48h de evolución sin otra sintomatología asociada. Exploración por órganos y aparatos sin hallazgos significativos, destacando buen estado general. Usted le iba entregar el alta domiciliaria pero el adjunto de Pediatría que está de guardia le pide sistemático de orina y un urocultivo por sondaje. En la orina destaca leucocituria ++, hematuria + y nitritos ++ y en el Gram de orina se observan bacilos Gram negativos. En la analítica de sangre no existe leucocitosis y la proteína C reactiva es de 50 mg/l. El adjunto le dice ahora que no es preciso que el niño ingrese y que le paute un antibiótico oral. Señale el tratamiento antibiótico empírico menos adecuado en este caso:",
         "options":[
             "Síndrome de Marfan",
             "Enfermedad de Von-Willebrand",
@@ -119,7 +119,7 @@
     
         {
         "id": 5,
-        "enun":"En relación al aumento de la prevalencia de sobrepeso y obesidad en la población infantil, todas las siguientes afirmaciones son ciertas EXCEPTO una:",
+        "enun":"5 En relación al aumento de la prevalencia de sobrepeso y obesidad en la población infantil, todas las siguientes afirmaciones son ciertas EXCEPTO una:",
         "options":[
             "Síndrome de Marfan",
             "Enfermedad de Von-Willebrand",
@@ -148,7 +148,7 @@
     
         {
         "id": 6,
-        "enun":"A un adolescente asintomático se le practica un ECG que muestra ritmo sinusal y bloqueo de rama derecha. En la exploración física se ausculta un segundo ruido desdoblado y en la radiografía de tórax se objetiva un arco pulmonar prominente. ¿Cuál sería su sospecha diagnóstica?",
+        "enun":"6 A un adolescente asintomático se le practica un ECG que muestra ritmo sinusal y bloqueo de rama derecha. En la exploración física se ausculta un segundo ruido desdoblado y en la radiografía de tórax se objetiva un arco pulmonar prominente. ¿Cuál sería su sospecha diagnóstica?",
         "options":[
             "Síndrome de Marfan",
             "Enfermedad de Von-Willebrand",
@@ -177,7 +177,7 @@
     
         {
         "id": 7,
-        "enun":"La leche humana es el alimento natural y apropiado durante el primer año de vida. ¿Cuál de las siguientes aseveraciones al respecto NO es cierta?",
+        "enun":"7 La leche humana es el alimento natural y apropiado durante el primer año de vida. ¿Cuál de las siguientes aseveraciones al respecto NO es cierta?",
         "options":[
             "Síndrome de Marfan",
             "Enfermedad de Von-Willebrand",
@@ -206,7 +206,7 @@
     
         {
         "id": 8,
-        "enun":"Los padres de un lactante de 5 meses acuden porque su hijo, que asiste a guardería, presenta desde hace 3 días, coincidiendo con una infección respiratoria de vías altas, heces líquidas en número de 4 al día, algún vómito alimentario ocasional y temperatura axilar de 38,3ºC. Es alimentado con lactancia mixta. A la exploración el lactante tiene buen estado general, está bien nutrido e hidratado y su respiración es eupneica; su peso es de 4.730g y ha descendido 70 g respecto al de la semana anterior. El abdomen están blando y depresible, sin masas ni megalias, y la fontanela, normotensa. Salvo la presencia de rinorrea acuosa, el resto de exploración por órganos y aparatos es normal. De las siguientes afirmaciones, señale la respuesta que considera CORRECTA",
+        "enun":"8 Los padres de un lactante de 5 meses acuden porque su hijo, que asiste a guardería, presenta desde hace 3 días, coincidiendo con una infección respiratoria de vías altas, heces líquidas en número de 4 al día, algún vómito alimentario ocasional y temperatura axilar de 38,3ºC. Es alimentado con lactancia mixta. A la exploración el lactante tiene buen estado general, está bien nutrido e hidratado y su respiración es eupneica; su peso es de 4.730g y ha descendido 70 g respecto al de la semana anterior. El abdomen están blando y depresible, sin masas ni megalias, y la fontanela, normotensa. Salvo la presencia de rinorrea acuosa, el resto de exploración por órganos y aparatos es normal. De las siguientes afirmaciones, señale la respuesta que considera CORRECTA",
         "options":[
             "Síndrome de Marfan",
             "Enfermedad de Von-Willebrand",
@@ -235,7 +235,7 @@
     
         {
         "id": 9,
-        "enun":"En un lactante de 3 meses todas las manifestaciones clínicas reseñadas a continuación obligarían a descartar una fibrosis quística, EXCEPTO:",
+        "enun":"9 En un lactante de 3 meses todas las manifestaciones clínicas reseñadas a continuación obligarían a descartar una fibrosis quística, EXCEPTO:",
         "options":[
             "Síndrome de Marfan",
             "Enfermedad de Von-Willebrand",
@@ -264,7 +264,7 @@
     
         {
         "id": 10,
-        "enun":"Niña de 3 años, procedente de Bangladesh, que consulta por episodios febriles intermitentes de 3 semanas de evolución, asociados a debilidad y pérdida de apetito. A la exploración física llama la atención esplenomegalia marcada y palidez mucocutánea. En las pruebas complementarias destaca: hemoglobina 8,5 mg/dl, hematocrito 26%, VCM 86 fL, HCM 29 pg, leucocitos 2800/mL con 300 neutrófilos /ml, plaquetas 54000/ml, GOT 85 U/l, GPT92 U/l e hipergammaglobulinemia policlonal en proteinograma de suero. Señale el diagnóstico más probable con los datos disponibles hasta este momento",
+        "enun":"10 Niña de 3 años, procedente de Bangladesh, que consulta por episodios febriles intermitentes de 3 semanas de evolución, asociados a debilidad y pérdida de apetito. A la exploración física llama la atención esplenomegalia marcada y palidez mucocutánea. En las pruebas complementarias destaca: hemoglobina 8,5 mg/dl, hematocrito 26%, VCM 86 fL, HCM 29 pg, leucocitos 2800/mL con 300 neutrófilos /ml, plaquetas 54000/ml, GOT 85 U/l, GPT92 U/l e hipergammaglobulinemia policlonal en proteinograma de suero. Señale el diagnóstico más probable con los datos disponibles hasta este momento",
         "options":[
             "Síndrome de Marfan",
             "Enfermedad de Von-Willebrand",

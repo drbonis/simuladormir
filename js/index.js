@@ -68,12 +68,16 @@ var app = {
 var pgprin = {
     initialize: function () {
         console.log("pgprin.initialize()");
+        console.log(pgexam.punref);
+        pgexam.calculaTop();
+        
         $('#pgprin').on('pagebeforeshow', function(event){
             console.log('pagebeforeshow prin');
             $('#exam_submit').click(function(event){
                 event.preventDefault();
                 pgexam.npreg = parseInt($('#numpreg').val());
-                $.when(pgprin.getQuestions(pgexam.npgreg, true)).done(function(q){
+                //$.when(pgprin.getQuestions(pgexam.npreg, true)).done(function(q){
+                $.when(pgprin.getQuestions(10, true)).done(function(q){
                     if(q['success']) {
                         pgexam.questions = q['questions'];
                         $.mobile.changePage("exam.html",{
@@ -113,7 +117,7 @@ var pgprin = {
             url: env.hosturi+'.env/questiontest.json', 
             success: function(response){
                 console.log("exito ajax");
-                return deferred.resolve({'success': true, 'questions': response});
+                return deferred.resolve({'success': true, 'questions': response.slice(0,n)});
             },
             error: function(request, status, error) {
                 console.log("fracaso ajax");
@@ -134,7 +138,11 @@ var pgprin = {
 
 var pgexam = {
     i: 0,
-    npreg: 20,
+    npreg: 0,
+    correctas: 0,
+    incorrectas: 0,
+    punref: 0,
+    puntuacion: 0,
     questions: [],
     initialize: function() {
         $("#detalles").hide();
@@ -145,21 +153,15 @@ var pgexam = {
             event.preventDefault();
             $('#respul .resp').removeClass('incorrecto correcto');  
             $("#detalles").hide();
-            console.log(pgexam);
-            console.log("pgexam");
-            if(pgexam.i % 5 == 0 && pgexam.i > 0) {
+            if((pgexam.i+1) % 5 == 0 && pgexam.i > 0) {
                 console.log("lanzo getQuestions en medio");
                 $.when(pgprin.getQuestions(5, false)).done(function(q){
-                    pgexam['questions'].push(q['questions']);
+                    pgexam['questions'] = pgexam['questions'].concat(q['questions']);
                     pgexam['questions'].splice(0,5);
-                    console.log("convierto i = 0");
                     pgexam.i=0;
                     console.log(pgexam);
                 });
-
             }
-            
-            
             pgexam.i++;
             pgexam.initialize_options(pgexam.i);
         });
@@ -178,7 +180,6 @@ var pgexam = {
         $("#op4").html(pgexam['questions'][pgexam.i]['options'][3]);
         $("#op5").html(pgexam['questions'][pgexam.i]['options'][4]);
         
-        
         $('#respul .resp').on('click',function(d){
             $('#respul .resp').removeClass('incorrecto correcto');    
             if(pgexam.i>=pgexam['questions'].length-1) {
@@ -187,24 +188,88 @@ var pgexam = {
             $("#detalles").show();
             
             $('#respul .resp').unbind('click');
-            console.log(pgexam['questions'].length-1, pgexam.i);
+
             respuesta = parseInt(String($(this).attr('id')).substr(2,1));
-            console.log("i: "+pgexam.i);
+
             if(respuesta == pgexam['questions'][pgexam.i]['resp']){
                 $(this).addClass('correcto');
+                pgexam.correctas++;
                 console.log("correcto");
             } else {
                 $('#op'+String(pgexam['questions'][pgexam.i]['resp'])).addClass('correcto');
                 $(this).addClass('incorrecto');
+                pgexam.incorrectas++;
                 console.log("Incorrecto!");
             }
-            $('#op1').html(pgexam['questions'][pgexam.i]['responses'][0]+'%: '+$('#op1').html());
-            $('#op2').html(pgexam['questions'][pgexam.i]['responses'][1]+'% : '+$('#op2').html());
-            $('#op3').html(pgexam['questions'][pgexam.i]['responses'][2]+'% : '+$('#op3').html());
-            $('#op4').html(pgexam['questions'][pgexam.i]['responses'][3]+'% : '+$('#op4').html());
-            $('#op5').html(pgexam['questions'][pgexam.i]['responses'][4]+'% : '+$('#op5').html());
+            console.log(pgexam);
+            mypuntuacion = (pgexam.correctas * 3 - pgexam.incorrectas) * 90 / pgexam.punref;
+            pgexam.puntuacion = (mypuntuacion).toFixed(4);
+            
+            $("#puntuacion").find('.ui-btn-text').text(String(pgexam.puntuacion));
+            $("#contadorcorrectas").find('.ui-btn-text').text(String(pgexam.correctas));
+            $("#contadorincorrectas").find('.ui-btn-text').text(String(pgexam.incorrectas));
+                        
+            $('#op1').html($('#op1').html()+' ['+pgexam['questions'][pgexam.i]['responses'][0]+'%]');
+            $('#op2').html($('#op2').html()+' ['+pgexam['questions'][pgexam.i]['responses'][1]+'%]');
+            $('#op3').html($('#op3').html()+' ['+pgexam['questions'][pgexam.i]['responses'][2]+'%]');
+            $('#op4').html($('#op4').html()+' ['+pgexam['questions'][pgexam.i]['responses'][3]+'%]');
+            $('#op5').html($('#op5').html()+' ['+pgexam['questions'][pgexam.i]['responses'][4]+'%]');
         });   
+    },
+    
+    getTopPuntos: function() {
+        
+        /*var deferred = $.Deferred();
+        
+        $.ajax({
+            url: env.hosturi+'.env/toppuntos.json', 
+            success: function(response){
+                console.log("exito ajax");
+                return deferred.resolve({'success': true, 'toppuntos': response});
+            },
+            error: function(request, status, error) {
+                console.log("fracaso ajax");
+                console.log(request);
+                console.log(status);
+                console.log(error);
+                return deferred.resolve({'success':false, 'error': error, 'request': request, 'status':status});
+            }
+        });
+        return deferred.promise();*/
+        
+        return {'success': true, 'toppuntos': [
+                {'name': 'Juan López', 'c': 10, 'i': 50},
+                {'name': 'Pedro Portillo', 'c': 20, 'i': 50},
+                {'name': 'Luis Alfonso', 'c': 30, 'i': 50},
+                {'name': 'Manuel Díez', 'c': 40, 'i': 50},
+                {'name': 'Julio Bonis', 'c': 50, 'i': 50},
+                {'name': 'Antonio Pérez', 'c': 50, 'i': 50},
+                {'name': 'Manuel Díez', 'c': 40, 'i': 50},
+                {'name': 'Juancho Popo', 'c': 30, 'i': 50},
+                {'name': 'Tiranías', 'c': 20, 'i': 50},
+                {'name': 'Leviatán', 'c': 10, 'i': 50}
+            ]}
+    }, 
+    
+    calculaTop: function() {
+        console.log("ejecuto pgexam.punref");
+        $.when(pgexam.getTopPuntos()).done(function(response) {
+            if(response['success']) {
+                t = response['toppuntos'];
+                prom = Math.round(((t[0]['c'] * 3 - t[0]['i']) + (t[1]['c'] * 3 - t[1]['i']) + (t[2]['c'] * 3 - t[2]['i']) +(t[3]['c'] * 3 - t[3]['i']) + (t[4]['c'] * 3 - t[4]['i']) + (t[5]['c'] * 3 - t[5]['i']) + (t[6]['c'] * 3 - t[6]['i']) + (t[7]['c'] * 3 - t[7]['i']) + (t[8]['c'] * 3 - t[8]['i']) + (t[9]['c'] * 3 - t[9]['i'])) / 10,4);
+                //prom = ((t[0]['c'] - 3 * t[0]['i']));
+                console.log(prom);
+                pgexam.punref = prom;  
+                console.log(pgexam);
+            } else {
+                pgexam.punref = 0;
+                console.log(pgexam);
+            }
+        });
+
+    
     }
+    
 }    
 
 /*
