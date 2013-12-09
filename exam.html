@@ -10,6 +10,10 @@
             <ul id= "enunul" data-role="listview" data-inset="true" class="enunciado">
                 <li id="enunciado"></li>
             </ul>
+            
+            <div id="imagendiv" class="imagenpregunta">
+                <img id="imagen" src="" width="90%"/>
+            </div>
             <ul id="respul" data-role="listview" data-inset="true" class="listaresp">
                 <li id="op1" class="resp"></li>
                 <li id="op2" class="resp"></li>
@@ -22,23 +26,12 @@
             <div id="next_question">
                 <input  name="next_question" type="submit" value="Siguiente" data-icon="arrow-r" data-iconpos="right">
             </div>
-            <div id="comentarios" data-inset="true">
-                <!--<h1>Comentarios</h1>
-                <ul id="listacomentarios" data-role="listview" data-inset="true" data-theme="c">
-                    <li>Este sería un ejemplo del primer comentario</li>
-                    <li>Este sería un ejemplo de segundo comentario</li>
-                    <li>Un tercer comentario al respecto</li>
-                    <li>Un cuarto comentario</li>
-                    <li>El quinto comentario</li>
-                </ul>
-                -->
-            </div>
         </div>
 
     </div>
     <div id="pgexam_footer" data-theme="a" data-role="footer" data-position="fixed">
         <div data-role="controlgroup" data-type="horizontal" data-mini="true" class="headertitle" >
-            <a id="puntuacion" href="#" data-role="button" data-theme="d">0,0000</a>
+            <a id="puntuacion" href="#" data-role="button" data-theme="d">0,00</a>
             <a id="contadorcorrectas" href="#" data-role="button" data-icon="check" data-iconpos="left" data-theme="d">0</a>
             <a id="contadorincorrectas" href="#" data-role="button" data-icon="delete" data-iconpos="left" data-theme="d">0</a>
         </div>

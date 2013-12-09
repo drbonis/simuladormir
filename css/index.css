@@ -146,3 +146,15 @@ h1 {
     letter-spacing: 0pt;
     word-spacing: 0pt;
 }
+
+.resp_small_font {
+    font-size: 12px;
+}
+
+.hallfame {
+    font-size: 12px;
+}
+
+.imagenpregunta {
+    text-align: center;
+}

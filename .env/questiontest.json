@@ -30,7 +30,8 @@
             "invaginación intestinal",
             "intolerancia alimentaria",
             "adenitis mesentérica"
-        ]
+        ],
+        "imgurl" : "7890.jpg"
     },
 
     {
@@ -56,7 +57,8 @@
             "alprazolam",
             "clonazepam",
             "caso clínico"
-        ]
+        ],
+        "imgurl" : "123456.jpg"
     },
     
     {
@@ -84,7 +86,8 @@
             "enfermedad de ehlers-danlos",
             "hemofilia a",
             "enfermedad de bernard-soulier"
-        ]
+        ],
+        "imgurl": ""
         
     },
     
@@ -113,7 +116,8 @@
             "enfermedad de ehlers-danlos",
             "hemofilia a",
             "enfermedad de bernard-soulier"
-        ]
+        ],
+        "imgurl": ""
         
     },
     
@@ -142,7 +146,8 @@
             "enfermedad de ehlers-danlos",
             "hemofilia a",
             "enfermedad de bernard-soulier"
-        ]
+        ], 
+        "imgurl": ""
         
     },
     
@@ -171,7 +176,8 @@
             "enfermedad de ehlers-danlos",
             "hemofilia a",
             "enfermedad de bernard-soulier"
-        ]
+        ], 
+        "imgurl": ""
         
     },
     
@@ -200,7 +206,8 @@
             "enfermedad de ehlers-danlos",
             "hemofilia a",
             "enfermedad de bernard-soulier"
-        ]
+        ], 
+        "imgurl": ""
         
     },
     
@@ -229,7 +236,8 @@
             "enfermedad de ehlers-danlos",
             "hemofilia a",
             "enfermedad de bernard-soulier"
-        ]
+        ], 
+        "imgurl": ""
         
     },
     
@@ -258,8 +266,9 @@
             "enfermedad de ehlers-danlos",
             "hemofilia a",
             "enfermedad de bernard-soulier"
-        ]
-        
+        ], 
+        "imgurl": ""
+          
     },
     
         {
@@ -287,7 +296,8 @@
             "enfermedad de ehlers-danlos",
             "hemofilia a",
             "enfermedad de bernard-soulier"
-        ]
+        ], 
+        "imgurl": ""
         
     }
 ]

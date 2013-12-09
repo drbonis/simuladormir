@@ -32,7 +32,13 @@
                     </option>
                 </select>
             </div>
+            <label for="nickname">Alias</label>
+            <input id="nickname" type="text" maxlength="15">
             <input id="exam_submit" name="submit" type="submit" value="Empezar exámen">
+            <p>*Tu puntuación final será publicada con tu alias. Puedes usar tu nombre real o inventado.</p>
+            <p>No existe límite de preguntas. ¡Así que responde hasta que te canses!</p>
+            <p>Tu puntuación final se muestra abajo junto con el número de aciertos y errores acumulados. La puntación se calcula como en el exámen MIR real en base a las <a href="punt.html" data-rel="dialog">diez mejores puntuaciones</a>.</p>
+            <p>Al responder cada pregunta se muestra el % de personas que han respondido cada opción</p>
         </form>
     </div>
     <div data-theme="a" data-role="footer" data-position="fixed">
@@ -43,5 +49,6 @@
     
     <script type="text/javascript">
         pgprin.initialize();
+        pgpunt.preinitialize();
     </script>
 </div>
