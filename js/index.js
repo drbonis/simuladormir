@@ -69,11 +69,13 @@ var pgprin = {
         $('#pgprin').on('pagebeforeshow', function(event){
             $('#exam_submit').click(function(event){
                 event.preventDefault();
+
                 pgexam.npreg = parseInt($('#numpreg').val());
                 pgexam.nickname = $('#nickname').val();
                 //console.log("nickname: "+pgexam.nickname);
                 //$.when(pgprin.getQuestions(pgexam.npreg, true)).done(function(q){
                 $.when(pgprin.getQuestions(10, true)).done(function(q){
+                    
                     if(q['success']) {
                         pgexam.questions = q['questions'];
                         pgexam.initialize();
@@ -146,11 +148,8 @@ var pgexam = {
     nickname: '',
     idexam: 0,
     initialize: function() {
-        //aqui crear el examen en la base de datos
-        //llamada AJAX a addExam(nickname);
-        
-        
-        
+        console.log("refresh pgexam");
+        $('#pgexam').trigger('refresh');        
         $("#detalles").hide();
         pgexam.i = 0;
         pgexam.puntuacion = 0;
@@ -160,10 +159,11 @@ var pgexam = {
         
         $.when(pgexam.addExam(pgexam.nickname)).done(function(r){
             pgexam.idexam = r['idexam'];
+            console.log("pgexam.initialize_options");
             pgexam.initialize_options(pgexam.i);
-        });
-        
-        
+            
+            
+            
         
         
         $("#next_question").on('click',function(event){
@@ -237,6 +237,17 @@ var pgexam = {
             $('#op5').html($('#op5').html()+' <span class="resp_small_font">['+porcentajes[4]+'%]</span>');
         }
         });   
+            
+            
+            
+            
+            
+            
+            
+        });
+        
+        
+
     },
     
     initialize_options: function(i){
@@ -286,14 +297,9 @@ var pgexam = {
             //url: env.hosturi+'.env/toppunt.json', 
             url: env.hosturi+"server/api/simulamir.php?f=addExam&nickname="+nickname+"&jsoncallback=?", type: "GET", dataType: 'jsonp',
             success: function(response){
-                //console.log("exito ajax addExam");
                 return deferred.resolve({'success': true, 'idexam': response['idexam']});
             },
             error: function(request, status, error) {
-                //console.log("fracaso ajax addExam");
-                //console.log(request);
-                //console.log(status);
-                //console.log(error);
                 return deferred.resolve({'success':false, 'error': error, 'request': request, 'status':status});
             }
         });
