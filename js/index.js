@@ -117,13 +117,13 @@ var pgprin = {
             //url: env.hosturi+'.env/questiontest.json', 
             url: env.hosturi+"server/api/simulamir.php?f=getQuestions&n="+n+"&jsoncallback=?", type: "GET", dataType: 'jsonp',
             success: function(response){
-                //console.log("exito ajax");
-                //console.log(response);
+                console.log("exito ajax");
+                console.log(response);
                 return deferred.resolve({'success': true, 'questions': response['preguntas'].slice(0,n)});
             },
             error: function(request, status, error) {
-                //console.log("fracaso ajax");
-                //console.log(request);
+                console.log("fracaso ajax");
+                console.log(request);
                 //console.log(status);
                 //console.log(error);
                 return deferred.resolve({'success':false, 'error': error, 'request': request, 'status':status});
@@ -170,6 +170,7 @@ var pgexam = {
         
         $("#next_question").on('click',function(event){
             event.preventDefault();
+            $.mobile.silentScroll(0);
             pgexam.respondidaflag = false;
             $('#respul .resp').removeClass('incorrecto correcto');  
             $("#detalles").hide();
