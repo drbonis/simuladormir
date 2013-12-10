@@ -74,8 +74,9 @@ var pgprin = {
                 pgexam.nickname = $('#nickname').val();
                 //console.log("nickname: "+pgexam.nickname);
                 //$.when(pgprin.getQuestions(pgexam.npreg, true)).done(function(q){
+                console.log("lanzo getQuestions 10, true");
                 $.when(pgprin.getQuestions(10, true)).done(function(q){
-                    
+                    //console.log(q);
                     if(q['success']) {
                         pgexam.questions = q['questions'];
                         pgexam.initialize();
@@ -116,14 +117,15 @@ var pgprin = {
             //url: env.hosturi+'.env/questiontest.json', 
             url: env.hosturi+"server/api/simulamir.php?f=getQuestions&n="+n+"&jsoncallback=?", type: "GET", dataType: 'jsonp',
             success: function(response){
-                //console.log("exito ajax");
+                console.log("exito ajax");
+                console.log(response);
                 return deferred.resolve({'success': true, 'questions': response['preguntas'].slice(0,n)});
             },
             error: function(request, status, error) {
-                //console.log("fracaso ajax");
-                //console.log(request);
-                //console.log(status);
-                //console.log(error);
+                console.log("fracaso ajax");
+                console.log(request);
+                console.log(status);
+                console.log(error);
                 return deferred.resolve({'success':false, 'error': error, 'request': request, 'status':status});
             }
         });
@@ -148,7 +150,7 @@ var pgexam = {
     nickname: '',
     idexam: 0,
     initialize: function() {
-        console.log("refresh pgexam");
+        //console.log("refresh pgexam");
         $('#pgexam').trigger('refresh');        
         $("#detalles").hide();
         pgexam.i = 0;
@@ -159,7 +161,7 @@ var pgexam = {
         
         $.when(pgexam.addExam(pgexam.nickname)).done(function(r){
             pgexam.idexam = r['idexam'];
-            console.log("pgexam.initialize_options");
+            //console.log("pgexam.initialize_options");
             pgexam.initialize_options(pgexam.i);
             
             
@@ -172,9 +174,10 @@ var pgexam = {
             $('#respul .resp').removeClass('incorrecto correcto');  
             $("#detalles").hide();
             if((pgexam.i+1) % 5 == 0 && pgexam.i > 0) {
-                //console.log("lanzo getQuestions en medio");
+                console.log("lanzo getQuestions 5");
                 $.when(pgprin.getQuestions(5, false)).done(function(q){
                     //console.log("pgprin.getQuestions ejecutado");
+                    //console.log(q);
                     pgexam['questions'] = pgexam['questions'].concat(q['questions']);
                     pgexam['questions'].splice(0,5);
                     pgexam.i=0;
@@ -252,8 +255,8 @@ var pgexam = {
     
     initialize_options: function(i){
         
-        //console.log('initialize_options');
-        //console.log(pgexam['questions']);
+        console.log('pgexam');
+        console.log(pgexam);
         $("#enunciado").html(pgexam['questions'][pgexam.i]['enun']);
         $("#op1").html(pgexam['questions'][pgexam.i]['op1']);
         $("#op2").html(pgexam['questions'][pgexam.i]['op2']);
