@@ -23,20 +23,7 @@
     <icon src="./res/icon/android/icon-96-xhdpi.png" gap:platform="android" gap:density="xhdpi" />
     
     
-    <gap:splash src="./res/screen/ios/screen-iphone-portrait-320x480.png" gap:platform="ios" width="320" height="480" />
-    <gap:splash src="./res/screen/ios/screen-iphone-portrait-2x-640×960.png" gap:platform="ios" width="640" height="960" />
-    <gap:splash src="./res/screen/ios/screen-iphone-portrait-568h-2x-640×1136.png" gap:platform="ios" width="640" height="1136" />
-    <gap:splash src="./res/screen/ios/screen-ipad-landscape-1024×748.png" gap:platform="ios" width="1024" height="748" />
-    <gap:splash src="./res/screen/ios/screen-ipad-portrait-768×1004.png" gap:platform="ios" width="768" height="1004" />
-    <!-- retina iPad support: PhoneGap 2.5.0+ only -->
-    <gap:splash src="./res/screen/ios/screen-ipad-landscape-2x-2048×1496.png" gap:platform="ios" width="2048" height="1496" />
-    <gap:splash src="./res/screen/ios/screen-ipad-portrait-2x-1536×2008.png" gap:platform="ios" width="1536" height="2008" />
-    
-    <gap:splash src="./res/screen/android/screen-ldpi-portrait.png" gap:platform="android" gap:density="ldpi" />
-    <gap:splash src="./res/screen/android/screen-mdpi-portrait.png" gap:platform="android" gap:density="mdpi" />
-    <gap:splash src="./res/screen/android/screen-hdpi-portrait.png" gap:platform="android" gap:density="hdpi" />
-    <gap:splash src="./res/screen/android/screen-xhdpi-portrait.png" gap:platform="android" gap:density="xhdpi" />
-    
+
     
     
 </widget>
