@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.twempa.simulamir" version="0.0.9">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.twempa.simulamir" version="1.0.0">
     <name>Simulador MIR</name>
     <description>Simulador de exámenes MIR incluyendo preguntas con imágenes y estadísticas sobre las preguntas más acertadas y falladas por los usuarios.</description>
     <author email="drbonis@gmail.com" href="http://www.twempa.com/">drbonis</author>
