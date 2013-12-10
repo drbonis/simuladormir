@@ -3,7 +3,7 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.twempa.simulamir"
         version   = "1.0.0">
-    <name>Twempa</name>
+    <name>Simulador MIR</name>
 
     <description>
         Simulador MIR: contesta preguntas del exámen MIR (Médico Interno Residente) y compite con otros usuarios. Incluye preguntas con imágenes clínicas y estadísticas sobre el porcentaje de aciertos y errores de todos los usuarios.
