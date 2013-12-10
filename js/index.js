@@ -165,88 +165,84 @@ var pgexam = {
             pgexam.initialize_options(pgexam.i);
             
             
+
+
+            $("#next_question").unbind('click');
+            $("#next_question").on('click',function(event){
+                event.preventDefault();
+                $.mobile.silentScroll(0);
+                pgexam.respondidaflag = false;
+                $('#respul .resp').removeClass('incorrecto correcto');  
+                $("#detalles").hide();
+                if((pgexam.i+1) % 5 == 0 && pgexam.i > 0) {
+                    //console.log("lanzo getQuestions 5");
+                    $.when(pgprin.getQuestions(5, false)).done(function(q){
+                        //console.log("pgprin.getQuestions ejecutado");
+                        //console.log(q);
+                        pgexam['questions'] = pgexam['questions'].concat(q['questions']);
+                        pgexam['questions'].splice(0,5);
+                        pgexam.i=0;
+                        //console.log(pgexam);
+                    });
+                }
+                pgexam.i++;
+                pgexam.initialize_options(pgexam.i);
+            });
             
-        
-        
-        $("#next_question").on('click',function(event){
-            event.preventDefault();
-            $.mobile.silentScroll(0);
-            pgexam.respondidaflag = false;
-            $('#respul .resp').removeClass('incorrecto correcto');  
-            $("#detalles").hide();
-            if((pgexam.i+1) % 5 == 0 && pgexam.i > 0) {
-                //console.log("lanzo getQuestions 5");
-                $.when(pgprin.getQuestions(5, false)).done(function(q){
-                    //console.log("pgprin.getQuestions ejecutado");
-                    //console.log(q);
-                    pgexam['questions'] = pgexam['questions'].concat(q['questions']);
-                    pgexam['questions'].splice(0,5);
-                    pgexam.i=0;
-                    //console.log(pgexam);
-                });
+            $('#respul .resp').unbind('click');
+            $('#respul .resp').on('click',function(d){
+
+               if (!pgexam.respondidaflag) {
+                pgexam.respondidaflag = true;
+                $("#detalles").show();
+                respuesta = parseInt(String($(this).attr('id')).substr(2,1));
+
+                if(respuesta == pgexam['questions'][pgexam.i]['resp']){
+                    $(this).addClass('correcto');
+                    pgexam.correctas++;
+                    result = 1;
+                } else {
+                    $('#op'+String(pgexam['questions'][pgexam.i]['resp'])).addClass('correcto');
+                    $(this).addClass('incorrecto');
+                    pgexam.incorrectas++;
+                    result = 0;
+                }
+                //console.log("pgexam.idexam");
+                //console.log(pgexam);
+                pgexam.addResponse(pgexam.idexam, parseInt(pgexam['questions'][pgexam.i]['id']), respuesta, result);
+
+                mypuntuacion = (pgexam.correctas * 3 - pgexam.incorrectas) * 90 / pgexam.punref;
+                pgexam.puntuacion = (mypuntuacion).toFixed(2);
+                totalrespuestas = 1+pgexam['questions'][pgexam.i]['respuestas']['n_tot'];
+                numrespuestas = [
+                    pgexam['questions'][pgexam.i]['respuestas']['n_op1'],
+                    pgexam['questions'][pgexam.i]['respuestas']['n_op2'],
+                    pgexam['questions'][pgexam.i]['respuestas']['n_op3'],
+                    pgexam['questions'][pgexam.i]['respuestas']['n_op4'],
+                    pgexam['questions'][pgexam.i]['respuestas']['n_op5']
+                ];
+                numrespuestas[respuesta - 1]+=1;
+                porcentajes = [
+                    Math.round(100*numrespuestas[0]/totalrespuestas),
+                    Math.round(100*numrespuestas[1]/totalrespuestas),
+                    Math.round(100*numrespuestas[2]/totalrespuestas),
+                    Math.round(100*numrespuestas[3]/totalrespuestas),
+                    Math.round(100*numrespuestas[4]/totalrespuestas)
+                ];
+
+
+                $("#puntuacion").find('.ui-btn-text').text(String(pgexam.puntuacion));
+                $("#contadorcorrectas").find('.ui-btn-text').text(String(pgexam.correctas));
+                $("#contadorincorrectas").find('.ui-btn-text').text(String(pgexam.incorrectas));
+
+                $('#op1').html($('#op1').html()+' <span class="resp_small_font">['+porcentajes[0]+'%]</span>');
+                $('#op2').html($('#op2').html()+' <span class="resp_small_font">['+porcentajes[1]+'%]</span>');
+                $('#op3').html($('#op3').html()+' <span class="resp_small_font">['+porcentajes[2]+'%]</span>');
+                $('#op4').html($('#op4').html()+' <span class="resp_small_font">['+porcentajes[3]+'%]</span>');
+                $('#op5').html($('#op5').html()+' <span class="resp_small_font">['+porcentajes[4]+'%]</span>');
             }
-            pgexam.i++;
-            pgexam.initialize_options(pgexam.i);
-        });
-
-        $('#respul .resp').on('click',function(d){
-
-           if (!pgexam.respondidaflag) {
-            pgexam.respondidaflag = true;
-            $("#detalles").show();
-            respuesta = parseInt(String($(this).attr('id')).substr(2,1));
-            
-            if(respuesta == pgexam['questions'][pgexam.i]['resp']){
-                $(this).addClass('correcto');
-                pgexam.correctas++;
-                result = 1;
-            } else {
-                $('#op'+String(pgexam['questions'][pgexam.i]['resp'])).addClass('correcto');
-                $(this).addClass('incorrecto');
-                pgexam.incorrectas++;
-                result = 0;
-            }
-            //console.log("pgexam.idexam");
-            //console.log(pgexam);
-            pgexam.addResponse(pgexam.idexam, parseInt(pgexam['questions'][pgexam.i]['id']), respuesta, result);
-
-            mypuntuacion = (pgexam.correctas * 3 - pgexam.incorrectas) * 90 / pgexam.punref;
-            pgexam.puntuacion = (mypuntuacion).toFixed(2);
-            totalrespuestas = 1+pgexam['questions'][pgexam.i]['respuestas']['n_tot'];
-            numrespuestas = [
-                pgexam['questions'][pgexam.i]['respuestas']['n_op1'],
-                pgexam['questions'][pgexam.i]['respuestas']['n_op2'],
-                pgexam['questions'][pgexam.i]['respuestas']['n_op3'],
-                pgexam['questions'][pgexam.i]['respuestas']['n_op4'],
-                pgexam['questions'][pgexam.i]['respuestas']['n_op5']
-            ];
-            numrespuestas[respuesta - 1]+=1;
-            porcentajes = [
-                Math.round(100*numrespuestas[0]/totalrespuestas),
-                Math.round(100*numrespuestas[1]/totalrespuestas),
-                Math.round(100*numrespuestas[2]/totalrespuestas),
-                Math.round(100*numrespuestas[3]/totalrespuestas),
-                Math.round(100*numrespuestas[4]/totalrespuestas)
-            ];
-
-                        
-            $("#puntuacion").find('.ui-btn-text').text(String(pgexam.puntuacion));
-            $("#contadorcorrectas").find('.ui-btn-text').text(String(pgexam.correctas));
-            $("#contadorincorrectas").find('.ui-btn-text').text(String(pgexam.incorrectas));
-                        
-            $('#op1').html($('#op1').html()+' <span class="resp_small_font">['+porcentajes[0]+'%]</span>');
-            $('#op2').html($('#op2').html()+' <span class="resp_small_font">['+porcentajes[1]+'%]</span>');
-            $('#op3').html($('#op3').html()+' <span class="resp_small_font">['+porcentajes[2]+'%]</span>');
-            $('#op4').html($('#op4').html()+' <span class="resp_small_font">['+porcentajes[3]+'%]</span>');
-            $('#op5').html($('#op5').html()+' <span class="resp_small_font">['+porcentajes[4]+'%]</span>');
-        }
-        });   
-            
-            
-            
-            
-            
-            
+            });   
+  
             
         });
         
