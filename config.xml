@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.twempa.simulamir" version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.twempa.simulamir" version="0.0.9">
     <name>Simulador MIR</name>
-    <description>Simulador de exámenes MIR</description>
+    <description>Simulador de exámenes MIR incluyendo preguntas con imágenes y estadísticas sobre las preguntas más acertadas y falladas por los usuarios.</description>
     <author email="drbonis@gmail.com" href="http://www.twempa.com/">drbonis</author>
     <access origin="*"/>
     <preference name="fullscreen" value="true"/>
     <preference name="webviewbounce" value="true"/>
+    <preference name="detect-data-types" value="false" />
+    <icon src="./img/logo.png"/>
+    <access origin="http://www.doctorality.com" />
+    <access origin="http://www.twempa.com" />
 </widget>
