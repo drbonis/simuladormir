@@ -74,7 +74,7 @@ var pgprin = {
                 pgexam.nickname = $('#nickname').val();
                 //console.log("nickname: "+pgexam.nickname);
                 //$.when(pgprin.getQuestions(pgexam.npreg, true)).done(function(q){
-                console.log("lanzo getQuestions 10, true");
+                //console.log("lanzo getQuestions 10, true");
                 $.when(pgprin.getQuestions(10, true)).done(function(q){
                     //console.log(q);
                     if(q['success']) {
@@ -117,15 +117,15 @@ var pgprin = {
             //url: env.hosturi+'.env/questiontest.json', 
             url: env.hosturi+"server/api/simulamir.php?f=getQuestions&n="+n+"&jsoncallback=?", type: "GET", dataType: 'jsonp',
             success: function(response){
-                console.log("exito ajax");
-                console.log(response);
+                //console.log("exito ajax");
+                //console.log(response);
                 return deferred.resolve({'success': true, 'questions': response['preguntas'].slice(0,n)});
             },
             error: function(request, status, error) {
-                console.log("fracaso ajax");
-                console.log(request);
-                console.log(status);
-                console.log(error);
+                //console.log("fracaso ajax");
+                //console.log(request);
+                //console.log(status);
+                //console.log(error);
                 return deferred.resolve({'success':false, 'error': error, 'request': request, 'status':status});
             }
         });
@@ -174,7 +174,7 @@ var pgexam = {
             $('#respul .resp').removeClass('incorrecto correcto');  
             $("#detalles").hide();
             if((pgexam.i+1) % 5 == 0 && pgexam.i > 0) {
-                console.log("lanzo getQuestions 5");
+                //console.log("lanzo getQuestions 5");
                 $.when(pgprin.getQuestions(5, false)).done(function(q){
                     //console.log("pgprin.getQuestions ejecutado");
                     //console.log(q);
@@ -255,8 +255,8 @@ var pgexam = {
     
     initialize_options: function(i){
         
-        console.log('pgexam');
-        console.log(pgexam);
+        //console.log('pgexam');
+        //console.log(pgexam);
         $("#enunciado").html(pgexam['questions'][pgexam.i]['enun']);
         $("#op1").html(pgexam['questions'][pgexam.i]['op1']);
         $("#op2").html(pgexam['questions'][pgexam.i]['op2']);
