@@ -62,6 +62,50 @@ var app = {
     }
 };
 
+var app2 = {
+    // Application Constructor
+    // For HTML5 App
+    initialize: function() {
+        //console.log('initialize app');
+        this.bindEvents();
+        this.receivedEvent('deviceready');
+        
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicity call 'app.receivedEvent(...);'
+    onDeviceReady: function() {
+        app.receivedEvent('deviceready');
+    },
+    // Update DOM on a Received Event
+    receivedEvent: function(id) {
+        var parentElement = document.getElementById(id);
+        var listeningElement = parentElement.querySelector('.listening');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+        
+        if(id === 'deviceready') {    
+            $('#deviceready').on('click', function(){
+                $.mobile.changePage("prin.html",{
+                    transition              : 'slide',
+                    showLoadMsg             : true
+                });
+            });
+        }
+    }
+};
+
+
 var pgprin = {
     initialize: function () {
         //console.log("pgprin.initialize()");
@@ -75,8 +119,9 @@ var pgprin = {
                 //console.log("nickname: "+pgexam.nickname);
                 //$.when(pgprin.getQuestions(pgexam.npreg, true)).done(function(q){
                 //console.log("lanzo getQuestions 10, true");
+                console.log("lanzo pgprin.getQuestions(10)");
                 $.when(pgprin.getQuestions(10, true)).done(function(q){
-                    //console.log(q);
+                    console.log(q);
                     if(q['success']) {
                         pgexam.questions = q['questions'];
                         pgexam.initialize();
