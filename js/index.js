@@ -208,9 +208,6 @@ var pgexam = {
             pgexam.idexam = r['idexam'];
             //console.log("pgexam.initialize_options");
             pgexam.initialize_options(pgexam.i);
-            
-            
-
 
             $("#next_question").unbind('click');
             $("#next_question").on('click',function(event){
@@ -300,13 +297,6 @@ var pgexam = {
         
         //console.log('pgexam');
         //console.log(pgexam);
-        $("#enunciado").html(pgexam['questions'][pgexam.i]['enun']);
-        $("#op1").html(pgexam['questions'][pgexam.i]['op1']);
-        $("#op2").html(pgexam['questions'][pgexam.i]['op2']);
-        $("#op3").html(pgexam['questions'][pgexam.i]['op3']);
-        $("#op4").html(pgexam['questions'][pgexam.i]['op4']);
-        $("#op5").html(pgexam['questions'][pgexam.i]['op5']);
-        
         imgname = pgexam['questions'][pgexam.i]['url'];
         if(imgname != 'null.jpg') {
             $('#imagendiv').attr('style','display:block');
@@ -315,6 +305,14 @@ var pgexam = {
             $('#imagendiv').attr('style','display:none');
             $('#imagen').attr('src','');
         }
+        $("#enunciado").html(pgexam['questions'][pgexam.i]['enun']);
+        $("#op1").html(pgexam['questions'][pgexam.i]['op1']);
+        $("#op2").html(pgexam['questions'][pgexam.i]['op2']);
+        $("#op3").html(pgexam['questions'][pgexam.i]['op3']);
+        $("#op4").html(pgexam['questions'][pgexam.i]['op4']);
+        $("#op5").html(pgexam['questions'][pgexam.i]['op5']);      
+
+
         
     },
         
