@@ -19,7 +19,9 @@
 
 $.ajaxSetup({ cache:false });
 
-
+var env = {
+    hosturi: "http://www.doctorality.com/simulamir/"
+}
 
 var app = {
     // Application Constructor
