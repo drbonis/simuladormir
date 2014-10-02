@@ -2,8 +2,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.twempa.simulamir"
-        version   = "1.0.2"
-        versionCode = "73"
+        version   = "1.0.3"
+        versionCode = "74"
 >
     <!-- config.xml para ANDROID -->
     <name>Simulador MIR</name>
@@ -18,7 +18,7 @@
 
     <feature name="http://api.phonegap.com/1.0/device" />
 
-    <preference name="phonegap-version" value="2.9.0" />
+    <preference name="phonegap-version" value="3.5.0" />
     <preference name="orientation"      value="portrait" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
