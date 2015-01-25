@@ -2,8 +2,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.twempa.simulamir"
-        version   = "1.0.3"
-        versionCode = "74"
+        version   = "1.0.76"
+        versionCode = "76"
 >
     <!-- config.xml para ANDROID -->
     <name>Simulador MIR</name>
