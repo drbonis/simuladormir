@@ -20,7 +20,7 @@
 $.ajaxSetup({ cache:false });
 
 var env = {
-    hosturi: "http://www.doctorality.com/simulamir/"
+    hosturi: "http://www.laposadahotel.mx/simulamir/"
 }
 
 var app = {
