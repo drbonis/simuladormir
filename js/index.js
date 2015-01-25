@@ -411,7 +411,8 @@ var pgpunt = {
             //console.log("TOPLIST");
             //console.log(pgpunt.top100.length);
             for (i=0; i<pgpunt.top10.length; ++i) {
-                $('#toplist').html($('#toplist').html()+'<li class="hallfame">'+pgpunt.top100[i]['name']+' / '+pgpunt.top100[i]['netas']+' / '+pgpunt.top100[i]['c']+' / '+pgpunt.top100[i]['i']+'</li>');
+                //$('#toplist').html($('#toplist').html()+'<li class="hallfame">'+pgpunt.top100[i]['name']+' / '+pgpunt.top100[i]['netas']+' / '+pgpunt.top100[i]['c']+' / '+pgpunt.top100[i]['i']+'</li>');
+                $('#toplist').html($('#toplist').html()+'<li class="hallfame">'+pgpunt.top100[i]['netas']+' / '+pgpunt.top100[i]['c']+' / '+pgpunt.top100[i]['i']+'</li>');
             }
             $('#toplist').listview('refresh');
             
